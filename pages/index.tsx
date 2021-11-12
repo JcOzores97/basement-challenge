@@ -1,9 +1,15 @@
-import type { NextPage } from 'next'
+import type { NextPage, GetStaticProps,InferGetStaticPropsType  } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from "next/image";
 import styles from '../styles/Home.module.css'
+import path from "path"
+import { promises as fs } from 'fs'
+import { Product } from '../product/types'
 
-const Home: NextPage = () => {
+
+
+const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) => {
+
   return (
     <div className={styles.container}>
       <Head>
@@ -23,18 +29,23 @@ const Home: NextPage = () => {
             </p>
           </div>
       <main className={styles.main}>
-        <div className={styles.productContainer}>
-          <div className={styles.product}></div>
-          <div className={styles.productInfo}></div>
-        </div>
-        <div className={styles.productContainer}>
-          <div className={styles.product}></div>
-          <div className={styles.productInfo}></div>
-        </div>        
-        <div className={styles.productContainer}>
-          <div className={styles.product}></div>
-          <div className={styles.productInfo}></div>          
-        </div>
+
+        {products.map((product: Product)=>{
+          return (
+            <div className={styles.productContainer} key={product.id}>
+              <div className={styles.product}>
+                <div className={styles.imageContainer}>
+                  <Image src={product.imageSrc}  alt={product.imageAltText} layout="responsive" width={880} height={1156}/>
+                </div>
+              </div>
+               <div className={styles.productInfo}>
+                 <h3 className={styles.productName} >{product.name}</h3>
+                 <h3 className={styles.price}>$ {product.priceInDollars}</h3>
+               </div>
+             </div>
+          )
+        })}
+
       </main>
 
       <footer className={styles.footer}>
@@ -42,6 +53,26 @@ const Home: NextPage = () => {
       </footer>
     </div>
   )
+}
+
+
+
+
+
+
+
+export const getStaticProps: GetStaticProps = async () => {
+  
+  const productsPath = path.join(process.cwd(), 'product', "mock.json");
+  const fileContent  = await fs.readFile(productsPath, 'utf8');
+  const mockProducts: Product[] = await JSON.parse(fileContent);
+
+
+  return {
+    props: {
+      products:mockProducts
+    }
+  }
 }
 
 export default Home
