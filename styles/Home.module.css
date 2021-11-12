@@ -98,10 +98,28 @@
 	background: linear-gradient(180deg, #1d1d1d 0%, rgba(21, 21, 21, 0) 100%);
 	width: 343px;
 	height: 394px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
 }
 
+.imageContainer {
+	width: 95%;
+	height: 95%;
+}
 .productInfo {
 	height: 40px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.productName,
+.price {
+	font-family: Basement Grotesque;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	width: max-content;
 }
 
 .footer {
