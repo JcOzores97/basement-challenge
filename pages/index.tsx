@@ -5,13 +5,16 @@ import styles from '../styles/Home.module.css'
 import path from "path"
 import { promises as fs } from 'fs'
 import { Product } from '../product/types'
+import { useState } from 'react';
 
 
 
 const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
+  const [showCart, setShowCart] = useState(false);
+
   return (
-    <div className={styles.container}>
+    <div className={showCart? styles.containerOnCartOpen : styles.containerOnCartClose}>
       <Head>
         <title>Basement challenge</title>
         <meta name="description" content="Basement challenge developed in nextjs" />
@@ -20,7 +23,30 @@ const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticPr
 
       <header className={styles.header}>
           <div className={styles.logo}>b.</div>
-          <button className={styles.cartButton}>CART (0)</button> 
+            <div className={styles.cartContainer}> 
+              <button className={styles.openCartButton} onClick={(ev)=>{setShowCart(true)}}>CART (0)</button>
+              {
+                showCart?(
+                  <div className={styles.cart}>
+                      <button onClick={()=>{setShowCart(false)}} className={styles.closeButton}>CLOSE</button>
+                      <h2>YOUR <span>CART</span></h2>
+                      <div className={styles.itemsContainer}>
+                      </div>
+                      <div className={styles.total}>
+                        <p>
+                          TOTAL
+                        </p>
+                        <p>
+                           $37,50 
+                        </p>
+                      </div>
+                      <button className={styles.checkout}>CHECKOUT</button>
+
+                  </div>
+                ):null
+
+              }
+            </div> 
           <img src="/header.svg" alt="basement supply header" className={styles.headerImg}/>
       </header>
       <div className={styles.marquee} >
@@ -29,7 +55,6 @@ const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticPr
             </p>
           </div>
       <main className={styles.main}>
-
         {products.map((product: Product)=>{
           return (
             <div className={styles.productContainer} key={product.id}>
