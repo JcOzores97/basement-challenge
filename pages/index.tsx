@@ -6,6 +6,7 @@ import { promises as fs } from 'fs'
 import { Product } from '../product/types'
 import { useState } from 'react';
 import ProductList from '../components/ProductList'
+import Cart from '../components/Cart'
 
 
 
@@ -26,25 +27,7 @@ const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticPr
             <div className={styles.cartContainer}> 
               <button className={styles.openCartButton} onClick={(ev)=>{setShowCart(true)}}>CART (0)</button>
               {
-                showCart?(
-                  <div className={styles.cart}>
-                      <button onClick={()=>{setShowCart(false)}} className={styles.closeButton}>CLOSE</button>
-                      <h2>YOUR <span>CART</span></h2>
-                      <div className={styles.itemsContainer}>
-                      </div>
-                      <div className={styles.total}>
-                        <p>
-                          TOTAL
-                        </p>
-                        <p>
-                           $37,50 
-                        </p>
-                      </div>
-                      <button className={styles.checkout}>CHECKOUT</button>
-
-                  </div>
-                ):null
-
+                showCart? <Cart onClose={(ev)=>setShowCart(false)} /> : null
               }
             </div> 
           <img src="/header.svg" alt="basement supply header" className={styles.headerImg}/>
