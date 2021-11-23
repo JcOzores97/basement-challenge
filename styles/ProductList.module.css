@@ -1,0 +1,41 @@
+.listContainer {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.productContainer {
+	margin-top: 2rem;
+	height: 432px;
+}
+
+.product {
+	border-bottom: solid white 1px;
+	background: linear-gradient(180deg, #1d1d1d 0%, rgba(21, 21, 21, 0) 100%);
+	width: 343px;
+	height: 394px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.imageContainer {
+	width: 95%;
+	height: 95%;
+}
+.productInfo {
+	height: 40px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.productName,
+.price {
+	font-family: Basement Grotesque;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	width: max-content;
+}

@@ -1,11 +1,11 @@
 import type { NextPage, GetStaticProps,InferGetStaticPropsType  } from 'next'
 import Head from 'next/head'
-import Image from "next/image";
 import styles from '../styles/Home.module.css'
 import path from "path"
 import { promises as fs } from 'fs'
 import { Product } from '../product/types'
 import { useState } from 'react';
+import ProductList from '../components/ProductList'
 
 
 
@@ -55,22 +55,7 @@ const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticPr
             </p>
           </div>
       <main className={styles.main}>
-        {products.map((product: Product)=>{
-          return (
-            <div className={styles.productContainer} key={product.id}>
-              <div className={styles.product}>
-                <div className={styles.imageContainer}>
-                  <Image src={product.imageSrc}  alt={product.imageAltText} layout="responsive" width={880} height={1156}/>
-                </div>
-              </div>
-               <div className={styles.productInfo}>
-                 <h3 className={styles.productName} >{product.name}</h3>
-                 <h3 className={styles.price}>$ {product.priceInDollars}</h3>
-               </div>
-             </div>
-          )
-        })}
-
+          <ProductList  products={products}/>
       </main>
 
       <footer className={styles.footer}>
