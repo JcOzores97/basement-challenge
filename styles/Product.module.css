@@ -1,11 +1,14 @@
 .productContainer {
 	margin-top: 2rem;
 	height: 432px;
+	width: 349px;
 }
 
 .product {
 	border-bottom: solid white 1px;
-	background: linear-gradient(180deg, #1d1d1d 0%, rgba(21, 21, 21, 0) 100%);
+	background: linear-gradient(360deg, #1d1d1d 0%, rgba(21, 21, 21, 0) 100%);
+	box-shadow: 0px 4px 21px 0px rgba(0, 0, 0, 0.2);
+
 	width: 343px;
 	height: 394px;
 	display: flex;

@@ -25,7 +25,10 @@ const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticPr
       </Head>
 
       <header className={styles.header}>
+        <img src="/leftAsterisk.svg" alt="asterisk" className={styles.leftAsterisk}/> 
+        <img src="/rightAsterisk.svg" alt="asterisk" className={styles.rightAsterisk}/> 
           <div className={styles.logo}>b.</div>
+            <img src="/hdLogo.svg" alt="hd-4k logo" className={styles.hdLogo}/> 
             <div className={styles.cartContainer}> 
               <button className={styles.openCartButton} onClick={(ev)=>{setShowCart(true)}}>CART ({items.length})</button>
               {

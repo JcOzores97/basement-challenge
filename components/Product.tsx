@@ -13,7 +13,7 @@ const Product = ({product}:ComponentProps)=>{
       <div className={styles.productContainer} >
         <div className={styles.product}>
           <div className={styles.imageContainer} >
-              <Image src={product.imageSrc}  alt={product.imageAltText} layout="responsive" width={880} height={1156}/>
+              <Image src={product.imageSrc}  alt={product.imageAltText} layout="responsive" width={880} height={1156} />
           </div>
         </div>
         <div className={styles.productInfo}>

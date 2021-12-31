@@ -133,3 +133,14 @@
 		opacity: 1;
 	}
 }
+
+@media (min-width: 800px) {
+	.container {
+		width: 55vw;
+		right: -8px;
+		height: 60vh;
+		left: initial;
+		border: solid 1px white;
+		overflow: scroll;
+	}
+}
