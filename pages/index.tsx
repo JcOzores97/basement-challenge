@@ -3,15 +3,17 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import path from "path"
 import { promises as fs } from 'fs'
-import { Product } from '../product/types'
-import { useState } from 'react';
-import ProductList from '../components/ProductList'
+import { Product as ProductType } from '../product/types'
+import { useContext, useState } from 'react';
+import Product from '../components/Product'
 import Cart from '../components/Cart'
+import { PurchaseContext } from '../context/purchase'
 
 
 
 const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
+  const {state: {items}} = useContext(PurchaseContext);
   const [showCart, setShowCart] = useState(false);
 
   return (
@@ -25,7 +27,7 @@ const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticPr
       <header className={styles.header}>
           <div className={styles.logo}>b.</div>
             <div className={styles.cartContainer}> 
-              <button className={styles.openCartButton} onClick={(ev)=>{setShowCart(true)}}>CART (0)</button>
+              <button className={styles.openCartButton} onClick={(ev)=>{setShowCart(true)}}>CART ({items.length})</button>
               {
                 showCart? <Cart onClose={(ev)=>setShowCart(false)} /> : null
               }
@@ -38,7 +40,16 @@ const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticPr
             </p>
           </div>
       <main className={styles.main}>
-          <ProductList  products={products}/>
+          <ul className={styles.listContainer}>
+           { 
+            products.map((product:ProductType)=>{ 
+              return (
+              <li className={styles.listItem} key={product.id}>
+                <Product product={product}/>
+              </li>)
+            })
+           } 
+           </ul>  
       </main>
 
       <footer className={styles.footer}>
@@ -58,7 +69,7 @@ export const getStaticProps: GetStaticProps = async () => {
   
   const productsPath = path.join(process.cwd(), 'product', "mock.json");
   const fileContent  = await fs.readFile(productsPath, 'utf8');
-  const mockProducts: Product[] = await JSON.parse(fileContent);
+  const mockProducts: ProductType[] = await JSON.parse(fileContent);
 
 
   return {

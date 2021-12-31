@@ -1,11 +1,3 @@
-.listContainer {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 100%;
-}
-
 .productContainer {
 	margin-top: 2rem;
 	height: 432px;
@@ -24,6 +16,7 @@
 .imageContainer {
 	width: 95%;
 	height: 95%;
+	position: relative;
 }
 .productInfo {
 	height: 40px;

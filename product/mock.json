@@ -3,24 +3,7 @@
         "id":1,
         "name": "Black t-shirt",
         "descriptionName": "Unisex Basic Softstyle T-Shirt",
-        "stockBySize": [
-            {
-                "size":"S",
-                "stock":2
-            },
-            {
-                "size":"M",
-                "stock":2
-            },
-            {
-                "size":"L",
-                "stock":2
-            },
-            {
-                "size":"XL",
-                "stock":2
-            }
-        ],
+        "sizes": ["S", "M", "L", "XL"],
         "priceInDollars": 3,
         "imageSrc":"/products/shirt.png",
         "imageAltText":"Una remera negra de Basement Swag"
@@ -29,24 +12,7 @@
         "id":2,
         "name": "Black hoodie",
         "descriptionName": "Unisex Basic Hoodie",
-        "stockBySize": [
-            {
-                "size":"S",
-                "stock":2
-            },
-            {
-                "size":"M",
-                "stock":2
-            },
-            {
-                "size":"L",
-                "stock":2
-            },
-            {
-                "size":"XL",
-                "stock":2
-            }
-        ],
+        "sizes": ["S", "M", "L", "XL"],
         "priceInDollars": 13,
         "imageSrc":"/products/hoodie.png",
         "imageAltText":"Una  buzo negro de Basement Swag"
@@ -55,24 +21,7 @@
         "id":3,
         "name": "Black cap",
         "descriptionName": "Unisex Basic Softstyle Cap",
-        "stockBySize": [
-            {
-                "size":"S",
-                "stock":2
-            },
-            {
-                "size":"M",
-                "stock":2
-            },
-            {
-                "size":"L",
-                "stock":2
-            },
-            {
-                "size":"XL",
-                "stock":2
-            }
-        ],
+        "sizes": ["S", "M", "L", "XL"],
         "priceInDollars": 3,
         "imageSrc":"/products/cap.png",
         "imageAltText":"Una gorra negra de Basement Swag"
