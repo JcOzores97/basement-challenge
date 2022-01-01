@@ -48,7 +48,7 @@ const PurchaseProvider = ({ children }:PurchaseProviderProps) => {
     setItems(newItems);
   }
 
-  const state={ items:[]}
+  const state={items}
   const actions = {addItem, removeItem}
 
   React.useEffect(()=>{
