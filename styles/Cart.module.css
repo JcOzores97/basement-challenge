@@ -11,8 +11,9 @@
 	height: 100vh;
 	z-index: 20;
 	display: grid;
-	grid-template-rows: repeat(max-content, 5);
+	grid-template-rows: 50px 200px minmax(120px, 1fr) 152px;
 	grid-gap: 1rem;
+	/* overflow: scroll; */
 }
 
 .content[data-state="open"] {
@@ -23,7 +24,8 @@
 	-webkit-animation: fade-out 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 	animation: fade-out 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.content > h2 {
+
+.title > h2:nth-child(1) {
 	font-family: Basement Grotesque;
 	font-style: normal;
 	font-weight: bold;
@@ -36,9 +38,28 @@
 	color: white;
 	-webkit-text-stroke: 1.5px white;
 }
+.title > h2:nth-child(2) {
+	background-color: transparent;
+	font-family: Basement Grotesque;
+	font-style: normal;
+	font-weight: bold;
+	color: transparent;
+	text-align: center;
+	padding-top: 6px;
+	font-weight: bold;
+	line-height: 102%;
+	width: 100%;
+	margin: 0;
+	font-size: 116px;
+	-webkit-text-stroke: 1.5px white;
+}
 
 .itemsContainer {
-	height: 140px;
+	overflow: scroll;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	margin-top: 0.5rem;
 }
 
 .totalContainer {
@@ -94,19 +115,6 @@
 	height: max-content;
 	align-self: end;
 }
-.content h2 > span {
-	background-color: transparent;
-	font-family: Basement Grotesque;
-	font-style: normal;
-	font-weight: bold;
-	color: transparent;
-	text-align: right;
-	padding-top: 6px;
-	font-weight: bold;
-	line-height: 102%;
-	width: 100%;
-	margin: 0;
-}
 
 .trigger {
 	font-family: 'Basement Grotesque', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
@@ -121,6 +129,84 @@
 	height: 2.25rem;
 	border-radius: 20px;
 	cursor: pointer;
+}
+
+.item {
+	border: solid 1px slategray;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	height: 120px;
+}
+
+.name,
+.price {
+	font-size: 1rem;
+}
+
+.name {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.descriptionName,
+.quantity,
+.size {
+	font-size: 12px;
+}
+
+.descriptionName {
+	font-weight: bold;
+	color: rgba(153, 153, 153, 1);
+}
+
+.infoContainer {
+	display: grid;
+	align-items: center;
+	margin: 0.2rem;
+}
+
+.imageContainer {
+	width: 90px;
+	justify-self: center;
+}
+
+.size > button {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	color: white;
+	background-color: transparent;
+	margin-left: 0.5rem;
+	padding: 0;
+	font-size: 11px;
+	font-weight: bold;
+	cursor: pointer;
+	border: none;
+}
+
+.quantity {
+	display: flex;
+	align-items: center;
+}
+.quantityUpdate > button {
+	padding: 0;
+	width: 20px;
+	/*height: 20px; */
+	border: none;
+	background-color: transparent;
+	color: white;
+	cursor: pointer;
+}
+
+.quantityUpdate {
+	margin-left: 0.75rem;
+	border: solid 1px white;
+	border-radius: 10px;
+	width: 60px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	height: 20px;
 }
 
 @keyframes fade-in {
@@ -145,6 +231,16 @@
 	}
 }
 
+@media (min-width: 480px) {
+	.item {
+		height: 140px;
+	}
+	.imageContainer {
+		width: 110px;
+		justify-self: center;
+	}
+}
+
 @media (min-width: 800px) {
 	.content {
 		width: 55vw;
@@ -153,7 +249,6 @@
 		left: initial;
 		border-left: solid 1px white;
 		border-bottom: solid 1px white;
-		overflow: scroll;
 	}
 	.totalContainer {
 		height: 60px;
@@ -174,5 +269,73 @@
 	.checkout {
 		font-size: 35px;
 		letter-spacing: 2px;
+	}
+	.content {
+		grid-template-rows: 50px 200px minmax(120px, 1fr) 80px;
+	}
+}
+
+@media (min-width: 1000px) {
+	.item {
+		height: 200px;
+	}
+	.name,
+	.price {
+		font-size: 1.25rem;
+	}
+	.descriptionName,
+	.quantity,
+	.size,
+	.size > button,
+	.quantityUpdate > button {
+		font-size: 1rem;
+	}
+
+	.total {
+		font-size: 2rem;
+	}
+
+	.imageContainer {
+		width: 150px;
+	}
+	.infoContainer {
+		grid-template-columns: 4fr 1fr;
+		grid-template-rows: repeat(4, auto);
+	}
+	.infoContainer > * {
+		grid-column: 1;
+	}
+	.price {
+		grid-area: -2 / 2;
+	}
+
+	.totalContainer {
+		border-top: solid 1px white;
+		height: 70px;
+	}
+	.quantityUpdate {
+		height: 24px;
+	}
+	.quantity {
+		align-items: flex-end;
+	}
+}
+
+@media (min-width: 1200px) {
+	.content {
+		grid-template-rows: 50px 120px minmax(120px, 1fr) 80px;
+	}
+	.title {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.title > h2:nth-child(2) {
+		line-height: 90px;
+		width: initial;
+	}
+	.title > h2:nth-child(1) {
+		line-height: 90px;
+		width: initial;
 	}
 }
