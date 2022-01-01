@@ -8,7 +8,8 @@ type PurchaseProviderProps = {children: React.ReactNode}
 
 interface PurchaseContextInterface {
   state:{
-    items: Item[]
+    items: Item[],
+    total: number
   },
   actions:{
     addItem:(product: Product) => void,
@@ -19,10 +20,16 @@ interface PurchaseContextInterface {
 const PurchaseContext = React.createContext<PurchaseContextInterface >({} as PurchaseContextInterface);
 
 
+
+
 const PurchaseProvider = ({ children }:PurchaseProviderProps) => {
 
   const [items, setItems] = React.useState<Item[]>([]);
+  const total = getTotal(items);
 
+  function getTotal(items: Item[]){
+    return items.reduce((acc, currItem)=> acc + currItem.priceInDollars,0);
+  }
 
   function addItem(product: Product){ 
     const item =  items.find((item)=> item.id === product.id);
@@ -48,13 +55,8 @@ const PurchaseProvider = ({ children }:PurchaseProviderProps) => {
     setItems(newItems);
   }
 
-  const state={items}
+  const state={items, total}
   const actions = {addItem, removeItem}
-
-  React.useEffect(()=>{
-    console.log(items)
-  },[items])
-
 
     return <PurchaseContext.Provider value={{ state, actions }}>{children}</PurchaseContext.Provider>;
 };
