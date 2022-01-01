@@ -28,7 +28,7 @@ const PurchaseProvider = ({ children }:PurchaseProviderProps) => {
   const total = getTotal(items);
 
   function getTotal(items: Item[]){
-    return items.reduce((acc, currItem)=> acc + currItem.priceInDollars,0);
+    return items.reduce((acc, currItem)=> acc + (currItem.priceInDollars * currItem.quantity),0);
   }
 
   function addItem(product: Product){ 
