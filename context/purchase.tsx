@@ -13,7 +13,8 @@ interface PurchaseContextInterface {
   },
   actions:{
     addItem:(product: Product) => void,
-    removeItem:(id:number) => void
+    removeItem:(id:number) => void,
+    updateItemQuantity: (id:number, newQuantity: number) => void
   }
 }
 
@@ -36,14 +37,7 @@ const PurchaseProvider = ({ children }:PurchaseProviderProps) => {
 
     if(item){
       //aumentar en uno la cantidad
-      const newItems = items.map((i)=>{
-        if(i.id === item.id){
-          return {...item, quantity: item.quantity + 1}
-        }
-        return i;
-      })
-
-      setItems(newItems);
+      updateItemQuantity(item.id, item.quantity + 1);
     }else{
       //añadir el nuevo item
       const newItem = {...product, quantity:1}
@@ -55,8 +49,21 @@ const PurchaseProvider = ({ children }:PurchaseProviderProps) => {
     setItems(newItems);
   }
 
+  function updateItemQuantity(id: number,newQuantity:number){
+      if(newQuantity <= 0){
+        return
+      }
+      const newItems= items.map((item)=>{
+        if(item.id === id){
+          item.quantity = newQuantity;
+        }
+        return item;
+      });
+      setItems(newItems);
+  }
+
   const state={items, total}
-  const actions = {addItem, removeItem}
+  const actions = {addItem, removeItem , updateItemQuantity}
 
     return <PurchaseContext.Provider value={{ state, actions }}>{children}</PurchaseContext.Provider>;
 };
