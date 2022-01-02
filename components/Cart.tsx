@@ -17,7 +17,7 @@ const Cart = (props:ComponentProps)=>{
             </Popover.Trigger> 
             <Popover.Content className={styles.content} sideOffset={-52} alignOffset={-10}>
                 <Popover.Close className={styles.closeButton}> 
-                    Close
+                    <img src='./close.svg' alt='close icon'/>
                 </Popover.Close >
                 <div className={styles.title}>
                 <h2>YOUR </h2>

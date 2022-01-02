@@ -55,7 +55,7 @@
 }
 
 .itemsContainer {
-	overflow: scroll;
+	overflow-y: scroll;
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
@@ -104,6 +104,12 @@
 	justify-self: right;
 	cursor: pointer;
 }
+
+.closeButton > img {
+	width: 80px;
+	height: 20px;
+}
+
 .total {
 	font-style: normal;
 	font-weight: bold;
@@ -244,6 +250,7 @@
 @media (min-width: 800px) {
 	.content {
 		width: 55vw;
+		max-width: 880px;
 		min-height: 60vh;
 		max-height: 650px;
 		left: initial;
@@ -272,6 +279,10 @@
 	}
 	.content {
 		grid-template-rows: 50px 200px minmax(120px, 1fr) 80px;
+	}
+	.closeButton > img {
+		width: 90px;
+		height: 30px;
 	}
 }
 
@@ -318,6 +329,10 @@
 	}
 	.quantity {
 		align-items: flex-end;
+	}
+	.content > * {
+		margin-left: 2rem;
+		margin-right: 2rem;
 	}
 }
 
