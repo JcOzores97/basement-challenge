@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { Product } from '../product/types';
-
-
-type Item = Product & {quantity: number};
+import { Product, size} from '../product/types';
+type Item = Product & {quantity: number, selectedSize: size};
 
 type PurchaseProviderProps = {children: React.ReactNode}
 
@@ -14,7 +12,8 @@ interface PurchaseContextInterface {
   actions:{
     addItem:(product: Product) => void,
     removeItem:(id:number) => void,
-    updateItemQuantity: (id:number, newQuantity: number) => void
+    updateItemQuantity: (id:number, newQuantity: number) => void,
+    updateSelectedSize: (id:number, newSize: size) => void
   }
 }
 
@@ -40,7 +39,7 @@ const PurchaseProvider = ({ children }:PurchaseProviderProps) => {
       updateItemQuantity(item.id, item.quantity + 1);
     }else{
       //añadir el nuevo item
-      const newItem = {...product, quantity:1}
+      const newItem = {...product, quantity:1, selectedSize: "M" as size}
       setItems([...items, newItem]);
     }
   }
@@ -62,8 +61,18 @@ const PurchaseProvider = ({ children }:PurchaseProviderProps) => {
       setItems(newItems);
   }
 
+  function updateSelectedSize(id: number, newSize:size){
+    const newItems= items.map((item)=>{
+      if(item.id === id){
+        item.selectedSize = newSize;
+      }
+      return item;
+    });
+    setItems(newItems);
+  }
+
   const state={items, total}
-  const actions = {addItem, removeItem , updateItemQuantity}
+  const actions = {addItem, removeItem , updateItemQuantity, updateSelectedSize}
 
     return <PurchaseContext.Provider value={{ state, actions }}>{children}</PurchaseContext.Provider>;
 };

@@ -1,5 +1,6 @@
-type size = "S"| "M" |"L"| "XL";
+export type size = "S"| "M" |"L"| "XL";
 // type sizeStock = {size:size, stock: number};
+
 
 export interface Product {
     id: number,

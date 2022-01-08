@@ -8,7 +8,7 @@ type ComponentProps = {
  
 
 const Cart = (props:ComponentProps)=>{
-    const {state:{items , total}, actions:{updateItemQuantity}} = useContext(PurchaseContext);
+    const {state:{items , total}, actions:{updateItemQuantity, updateSelectedSize}} = useContext(PurchaseContext);
     return(
         
         <Popover.Root >
@@ -42,9 +42,11 @@ const Cart = (props:ComponentProps)=>{
                                         </div>
                                     </div>
                                     <div className={styles.size}>SIZE: 
-                                        {["S", "M", "L", "XL"].map((size)=>{
+                                        {item.sizes.map((size)=>{
                                            return (
-                                            <button key={size} >
+                                            <button className={size === item.selectedSize? styles.selectedSizeButton:styles.sizeButton}
+                                                onClick={(ev)=> updateSelectedSize(item.id, size)}
+                                                key={size} >
                                                 {size}
                                             </button>
                                            ) 

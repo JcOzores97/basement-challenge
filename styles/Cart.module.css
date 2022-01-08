@@ -176,7 +176,8 @@
 	justify-self: center;
 }
 
-.size > button {
+.sizeButton,
+.selectedSizeButton {
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
@@ -187,7 +188,15 @@
 	font-size: 11px;
 	font-weight: bold;
 	cursor: pointer;
+	transition: border 0.5s ease-in-out;
+}
+
+.sizeButton {
 	border: none;
+}
+
+.selectedSizeButton {
+	border: solid 1px white;
 }
 
 .quantity {
@@ -284,55 +293,59 @@
 		width: 90px;
 		height: 30px;
 	}
-}
 
-@media (min-width: 1000px) {
-	.item {
-		height: 200px;
-	}
-	.name,
-	.price {
-		font-size: 1.25rem;
-	}
-	.descriptionName,
-	.quantity,
-	.size,
-	.size > button,
-	.quantityUpdate > button {
-		font-size: 1rem;
-	}
+	@media (min-width: 1000px) {
+		.item {
+			height: 200px;
+		}
+		.name,
+		.price {
+			font-size: 1.25rem;
+		}
+		.descriptionName,
+		.quantity,
+		.size,
+		.size > button,
+		.quantityUpdate > button {
+			font-size: 1rem;
+		}
 
-	.total {
-		font-size: 2rem;
-	}
+		.total {
+			font-size: 2rem;
+		}
 
-	.imageContainer {
-		width: 150px;
-	}
-	.infoContainer {
-		grid-template-columns: 4fr 1fr;
-		grid-template-rows: repeat(4, auto);
-	}
-	.infoContainer > * {
-		grid-column: 1;
-	}
-	.price {
-		grid-area: -2 / 2;
-	}
+		.imageContainer {
+			width: 150px;
+		}
+		.infoContainer {
+			grid-template-columns: 4fr 1fr;
+			grid-template-rows: repeat(4, auto);
+		}
+		.infoContainer > * {
+			grid-column: 1;
+		}
+		.price {
+			grid-area: -2 / 2;
+		}
 
-	.totalContainer {
-		border-top: solid 1px white;
-		height: 70px;
-	}
-	.quantityUpdate {
-		height: 24px;
-	}
-	.quantity {
-		align-items: flex-end;
-	}
-	.content > * {
-		margin-left: 2rem;
-		margin-right: 2rem;
+		.totalContainer {
+			border-top: solid 1px white;
+			height: 70px;
+		}
+		.quantityUpdate {
+			height: 24px;
+		}
+		.quantity {
+			align-items: flex-end;
+		}
+		.content > * {
+			margin-left: 2rem;
+			margin-right: 2rem;
+		}
+		.size > button {
+			width: 30px;
+			height: 30px;
+		}
 	}
 }
 
